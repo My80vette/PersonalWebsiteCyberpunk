@@ -5,7 +5,7 @@ import { Typography, Image } from 'antd';
 import { GithubOutlined } from '@ant-design/icons';
 
 const { Title } = Typography;
-
+//This is where we import the necessary components from the ant design library, styled-components, and framer-motion
 const AgentsContainer = styled(motion.div)`
   min-height: calc(100vh - 100px);
   display: flex;
@@ -13,9 +13,9 @@ const AgentsContainer = styled(motion.div)`
   align-items: center;
   padding: 6rem 2rem 2rem;
   gap: 2rem;
-  background: #121212;
+  background: rgba(18, 18, 18, 0.6);
 `;
-
+//This is where we create a styled component for the workflow card, which will contain the title, description, image, and github link for each workflow
 const WorkflowCard = styled(motion.div)`
   background: rgba(0, 0, 0, 0.7);
   border: 2px solid var(--neon-blue);
@@ -26,20 +26,20 @@ const WorkflowCard = styled(motion.div)`
   margin-bottom: 2rem;
   box-shadow: 0 0 15px rgba(41, 98, 255, 0.3);
 `;
-
+//This is where we create styled components for the workflow title, description, and github link
 const WorkflowTitle = styled.h2`
   color: var(--neon-blue);
   margin-bottom: 1rem;
   font-size: 1.8rem;
 `;
-
+//This is where we create a styled component for the workflow description
 const WorkflowDescription = styled.p`
   color: #ffffff;
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 1rem 0;
 `;
-
+//This is where we create a styled component for the github link
 const GithubLink = styled.a`
   display: inline-flex;
   align-items: center;
@@ -54,17 +54,25 @@ const GithubLink = styled.a`
   }
 `;
 
+//This is where we create all of our workflow objects, any workflows we want to add are added to this array of workflows
 const workflows = [
   {
     id: 1,
-    title: "Blog Post Generation Pipeline",
-    description: "An N8N workflow that automates the process of generating blog posts using Ollama LLM. Includes content extraction, processing, and Discord integration for approval.",
-    image: "/BasicChatbotWorkflow.png",
-    githubUrl: "https://github.com/yourusername/workflow-repo"
+    title: "Test Workflow 1",
+    description: "This is a test workflow to verify the component is rendering correctly.",
+    image: "/workflows/blogBotWorkflow.png",
+    githubUrl: "https://github.com/yourusername/test-workflow"
   },
-  // Add more workflows here
+  {
+    id: 2,
+    title: "Test Workflow 2",
+    description: "This is a test workflow to verify the component is rendering correctly.",
+    image: "/workflows/blogBotWorkflow.png",
+    githubUrl: "https://github.com/yourusername/test-workflow"
+  }
 ];
-
+//This is the component that will be rendered when the user navigates to the AiAgents page, 
+//so our other components are nested inside of this one
 const AiAgents = () => {
   return (
     <AgentsContainer
@@ -83,10 +91,14 @@ const AiAgents = () => {
           transition={{ type: "spring", stiffness: 300 }}
         >
           <WorkflowTitle>{workflow.title}</WorkflowTitle>
-          <Image
+          <Image 
             src={workflow.image}
             alt={workflow.title}
-            style={{ width: '100%', marginBottom: '1rem' }}
+            style={{ 
+              width: '100%',
+              marginBottom: '1rem',
+              borderRadius: '4px'
+            }}
           />
           <WorkflowDescription>{workflow.description}</WorkflowDescription>
           <GithubLink href={workflow.githubUrl} target="_blank">

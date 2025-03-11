@@ -130,7 +130,7 @@ const Home = () => {
     >
       <ProfileSection>
         <ProfileImage
-          src="/avatar.png"
+          src="/public/assets/avatar.png"
           alt="Nicholas Capriotti"
           whileHover={{ scale: 1.05 }}
         />

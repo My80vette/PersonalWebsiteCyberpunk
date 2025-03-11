@@ -10,6 +10,7 @@ import AiArt from './pages/AiArt';
 import CodeExamples from './pages/CodeExamples';
 import Resume from './pages/Resume';
 import Blog from './pages/Blog';
+import AiAgents from './pages/AiAgents';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
@@ -38,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
 
 const AppWrapper = styled(motion.div)`
   min-height: 100vh;
-  background-image: url('/Background.png');
+  background-image: url('/public/assets/Background.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -95,6 +96,7 @@ function App() {
                 <Route path="/code" element={<CodeExamples />} />
                 <Route path="/resume" element={<Resume />} />
                 <Route path="/blog" element={<Blog />} />
+                <Route path="/ai-agents" element={<AiAgents />} />
               </Routes>
             </AnimatePresence>
           </ContentWrapper>

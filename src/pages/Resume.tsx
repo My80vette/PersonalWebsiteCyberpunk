@@ -138,7 +138,7 @@ const Resume = () => {
           large language models and automation solutions.
         </Paragraph>
         <div style={{ marginTop: '1rem' }}>
-          <ContactButton icon={<DownloadOutlined />} href="/Capriotti_Resume_BS.pdf" download>
+          <ContactButton icon={<DownloadOutlined />} href="/public/assets/Capriotti_Resume_BS.pdf" download>
             Download Resume
           </ContactButton>
           <ContactButton icon={<LinkedinOutlined />} href="https://www.linkedin.com/in/nicholas-capriotti-5775031b9/" target="_blank">
