@@ -62,11 +62,11 @@ const Navigation = () => {
 
   const navItems = [
     { path: '/', icon: <HomeOutlined />, label: 'Home' },
-    { path: '/ai-art', icon: <PictureOutlined />, label: 'AI Art' },
-    { path: '/code', icon: <CodeOutlined />, label: 'LeetCode/Github' },
+    { path: '/code', icon: <CodeOutlined />, label: 'Code Examples' },
     { path: '/resume', icon: <FileOutlined />, label: 'Resume' },
     { path: '/blog', icon: <UserOutlined />, label: 'Blog' },
     { path: '/ai-agents', icon: <UserOutlined />, label: 'AI Agents' },
+    { path: '/ai-art', icon: <PictureOutlined />, label: 'AI Art' },
   ];
 
   return (
