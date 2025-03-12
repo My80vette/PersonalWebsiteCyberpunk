@@ -143,7 +143,10 @@ const Home = () => {
             transition={{ type: "spring", stiffness: 300 }}
           >
             <h3>Experience</h3>
-            <p>3+ Years</p>
+            <p>Backend: 2 Years</p>
+            <p>Frontend: 1 Year</p>
+            <p>LLMs: 3 Years</p>
+            
           </InfoTab>
           <InfoTab
             whileHover={{ scale: 1.05 }}
