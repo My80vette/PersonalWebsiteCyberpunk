@@ -88,7 +88,6 @@ const NeuralNetwork = () => {
   return <Canvas>{/* Render network */}</Canvas>;
 };`,
     github: "https://github.com/yourusername/neural-network-viz",
-    demo: "https://neural-viz-demo.com"
   },
   // Add more projects here
 ];
@@ -109,9 +108,6 @@ const CodeExamples = () => {
             <Space>
               <LinkButton href={project.github} target="_blank">
                 <GithubOutlined /> GitHub
-              </LinkButton>
-              <LinkButton href={project.demo} target="_blank">
-                <LinkOutlined /> Demo
               </LinkButton>
             </Space>
           }

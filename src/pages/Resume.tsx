@@ -205,7 +205,7 @@ const Resume = () => {
       </Section>
 
       <Section>
-        <SectionTitle level={2}>Previous Experience</SectionTitle>
+        <SectionTitle level={2}>Non-Software Professional Experience</SectionTitle>
         <StyledTimeline>
           <Timeline.Item>
             <Title level={4} style={{ color: 'var(--neon-blue)' }}>
