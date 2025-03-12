@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Typography } from 'antd';
-import { GithubOutlined, LinkedinOutlined, RedEnvelopeOutlined } from '@ant-design/icons';
+import { GithubOutlined, LinkedinOutlined, RedEnvelopeOutlined, SpotifyFilled, SpotifyOutlined } from '@ant-design/icons';
 
 const { Title, Paragraph } = Typography;
 
@@ -186,14 +186,17 @@ const Home = () => {
             automating my own daily blog with open-source LLMs, I'm all about creating stuff to solve the little issues that make life a little less fun.
           </StyledParagraph>
           <SocialLinks>
-            <SocialLink href="https://github.com/yourusername" target="_blank">
+            <SocialLink href="https://github.com/My80vette" target="_blank">
               <GithubOutlined />
             </SocialLink>
-            <SocialLink href="https://linkedin.com/in/yourusername" target="_blank">
+            <SocialLink href="https://www.linkedin.com/in/nicholas-capriotti-5775031b9/" target="_blank">
               <LinkedinOutlined />
             </SocialLink>
-            <SocialLink href="mailto:your.email@example.com">
+            <SocialLink href="mailto:Nicholascapriotti2001@gmail.com">
               <RedEnvelopeOutlined />
+            </SocialLink>
+            <SocialLink href="https://open.spotify.com/user/317hxkmasz4hdzljcyevvov64zsu?si=eb023d9cf9a04106" target="_blank">
+              <SpotifyFilled />
             </SocialLink>
           </SocialLinks>
         </BioSection>
