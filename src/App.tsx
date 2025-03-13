@@ -11,6 +11,7 @@ import CodeExamples from './pages/CodeExamples';
 import Resume from './pages/Resume';
 import Blog from './pages/Blog';
 import AiAgents from './pages/AiAgents';
+import ProjectGraph from './components/ProjectGraph';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');

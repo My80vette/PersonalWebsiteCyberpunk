@@ -62,7 +62,7 @@ const Navigation = () => {
 
   const navItems = [
     { path: '/', icon: <HomeOutlined />, label: 'Home' },
-    { path: '/code', icon: <CodeOutlined />, label: 'Code Examples' },
+    { path: '/code', icon: <CodeOutlined />, label: 'Code & Projects' },
     { path: '/resume', icon: <FileOutlined />, label: 'Resume' },
     { path: '/blog', icon: <UserOutlined />, label: 'Blog' },
     { path: '/ai-agents', icon: <UserOutlined />, label: 'AI Agents' },

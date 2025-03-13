@@ -64,16 +64,16 @@ const ArtContainer = styled(motion.div)`
 const artworks = [
   {
     id: 1,
-    title: "Southern Lights",
-    description: "Stable Diffusion 1.5 With HyperRealism LORA, created with a 3060ti, 2k Resolution, 12 Min Generation Time, 250 word prompt (100 word negative prompt).",
-    image: "/sthLght.png"
+    title: "Lovely - Billie Eilish (With Khalid)",
+    description: "Passing the lyrics to one of my favorite songs on my coding playlist through a neural network, I created this piece. The song is 'Lovely' by Billie Eilish and Khalid and revolves around topics like mental health, vunerability, and isolation. 150 Steps, 2k Resolution, 1.0 CFG Scale. 21 Min Generation Time on my 3060Ti with a generic 100 word negative prompt running on SD 1.5.",
+    image: "/art/lovely.png"
   },
   {
     id: 2,
-    title: "Neural Networks",
-    description: "Abstract representation of AI learning patterns",
-    image: "/path-to-your-image-2.jpg"
-  },
+    title: "Mother I Sober - Kendrick Lamar",
+    description: "Passing lyrics of my favorite music through a neural network is an interesing process, as it can create a visual representation of the emotions and themes of the song, allowing me to compare and contrast the visuals I feel in my own head when I listen. I have always been a visual thinker, so seeing how diffusion models transfer words to visuals is a fascinating process as I feel like im learning more about myself. This piece is based on the song 'Mother I Sober' by Kendrick Lamar. 150 Steps, 2k Resolution, 1.0 CFG Scale. 21 Min Generation Time on my 3060Ti with a generic 100 word negative prompt running on SD 1.5.",
+    image: "/art/motherISober.png"
+  }
   // Add more artwork entries here
 ];
 

@@ -1,9 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Typography } from 'antd';
-import { GithubOutlined, LinkedinOutlined, RedEnvelopeOutlined, SpotifyFilled, SpotifyOutlined } from '@ant-design/icons';
-
+import { GithubOutlined, LinkedinOutlined, RedEnvelopeOutlined, SpotifyFilled } from '@ant-design/icons';
 const { Title, Paragraph } = Typography;
 
 const HomeContainer = styled(motion.div)`
@@ -25,12 +23,33 @@ const ProfileSection = styled(motion.div)`
   width: 100%;
 `;
 
+const TopSection = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+  margin-bottom: 2rem;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const ProfileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+`;
+
 const ProfileImage = styled(motion.img)`
   width: 200px;
   height: 200px;
   border-radius: 50%;
   border: 3px solid var(--neon-blue);
   box-shadow: 0 0 20px var(--neon-blue);
+  margin-bottom: 1rem;
 `;
 
 const BioSection = styled(motion.div)`
@@ -129,11 +148,15 @@ const Home = () => {
       exit={{ opacity: 0 }}
     >
       <ProfileSection>
-        <ProfileImage
-          src="/public/assets/avatar.png"
-          alt="Nicholas Capriotti"
-          whileHover={{ scale: 1.05 }}
-        />
+        <TopSection>
+          <ProfileContainer>
+            <ProfileImage
+              src="/assets/avatar.png"
+              alt="Nicholas Capriotti"
+              whileHover={{ scale: 1.05 }}
+            />
+          </ProfileContainer>
+        </TopSection>
         
         <GradientDivider />
         
