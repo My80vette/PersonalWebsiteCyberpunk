@@ -146,13 +146,6 @@ const workflows = [
     image: "/workflows/blogBotWorkflow.png",
     githubUrl: "https://github.com/My80vette/N8N_Workflows/tree/AutomatedBlogBot"
   },
-  {
-    id: 2,
-    title: "Test Workflow 2",
-    description: "This is a test workflow to verify the component is rendering correctly.",
-    image: "/workflows/blogBotWorkflow.png",
-    githubUrl: "https://github.com/yourusername/test-workflow"
-  }
 ];
 //This is the component that will be rendered when the user navigates to the AiAgents page, 
 //so our other components are nested inside of this one

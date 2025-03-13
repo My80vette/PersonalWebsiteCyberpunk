@@ -121,6 +121,55 @@ const projects = [
       "Vector Stores"
     ],
     github: "https://github.com/ERAU-PRCOE-Capstones/CESE-NASA-JPL-IngenuityHelicopterLandingSystem-F2023"
+  },
+  {
+    id: 2,
+    title: "MNIST Handwritten Digit Classification - Convolutional Neural Network",
+    description: "This project involved the development of a Convolutional Neural Network (CNN) for handwritten digit classification using the MNIST dataset. The goal was to build a robust model capable of accurately identifying digits from 0 to 9. As the sole developer, I designed, implemented, and iteratively improved the CNN architecture using TensorFlow and Keras, achieving a final accuracy of 99%.",
+    image: "/workflows/MNISTArchitecture.PNG", // Make sure this image exists in your public folder
+    technicalDetails: {
+      features: [
+        "Developed custom CNN architecture from scratch achieving 99% accuracy",
+        "Implemented multiple convolutional layers for feature extraction",
+        "Utilized MaxPooling, Batch Normalization, and Dropout for optimization",
+        "Integrated dynamic learning rate adjustment using ReduceLROnPlateau",
+        "Conducted comprehensive performance evaluation and testing"
+      ],
+      architecture: {
+        title: "Neural Network Architecture",
+        components: [
+          {
+            name: "Input Layer & Preprocessing",
+            description: "Handles MNIST dataset input with normalization and reshaping for optimal processing"
+          },
+          {
+            name: "Feature Extraction Layers",
+            description: "Multiple convolutional layers (32 to 512 filters) with ReLU activation for hierarchical feature detection"
+          },
+          {
+            name: "Optimization Layers",
+            description: "MaxPooling layers for dimensionality reduction, Batch Normalization for training stability, and Dropout for preventing overfitting"
+          },
+          {
+            name: "Classification Layers",
+            description: "Flattening layer followed by Dense layers (128 nodes) and final Softmax output layer for 10-class classification"
+          }
+        ]
+      },
+      implementation: "The CNN was implemented using TensorFlow and Keras, featuring a sequential model architecture. The network incorporates multiple convolutional layers with increasing filter sizes (32 to 512), MaxPooling for dimensionality reduction, and Batch Normalization for training stability. ReLU activation functions were used throughout, with a Softmax activation in the output layer for classification. The model was optimized using SGD with a 0.005 learning rate and categorical cross-entropy loss.",
+      challenges: "The development process began with a basic model achieving only 10% accuracy. Through iterative improvements and extensive experimentation with network architecture, we addressed challenges including overfitting (solved with dropout and batch normalization) and optimization difficulties. Learning the intricacies of CNNs and their various layers required significant research and experimentation to achieve the final 99% accuracy."
+    },
+    technologies: [
+      "Python",
+      "TensorFlow",
+      "Keras",
+      "NumPy",
+      "Matplotlib",
+      "CNN Architecture",
+      "Deep Learning",
+      "Image Classification"
+    ],
+    github: "https://github.com/yourusername/mnist-classification" // Replace with actual GitHub link
   }
 ];
 
