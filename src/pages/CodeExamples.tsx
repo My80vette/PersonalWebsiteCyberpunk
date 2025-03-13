@@ -170,6 +170,72 @@ const projects = [
       "Image Classification"
     ],
     github: "https://github.com/yourusername/mnist-classification" // Replace with actual GitHub link
+  },
+  {
+    id: 3,
+    title: "Blog Generation Automation Pipeline",
+    description: "A fully local, privacy-focused blog generation system that leverages AI to automate content creation while maintaining complete data control. I wanted to find a way to generate comprehensive 'blog' posts to track my daily learning without interrupting my development workflow. Built with n8n for workflow automation and Ollama for local LLM processing, this system transforms simple text inputs into comprehensive blog posts while ensuring complete data privacy and control.",
+    image: "/workflows/blogBotWorkflow.png",
+    technicalDetails: {
+      features: [
+        "100% Local Processing - All operations run locally, ensuring complete privacy and control",
+        "Modular LLM Integration with Ollama - Flexible model selection for different use cases",
+        "Automated Document-to-Blog Conversion with intelligent content extraction",
+        "Human-in-the-Loop Refinement with regeneration capability for poor outputs",
+        "Direct MongoDB Storage Management without third-party dependencies",
+        "Intelligent Date Handling for consistent post management",
+        "Comprehensive Quality Control System with error handling",
+        "Discord-based content review and approval system"
+      ],
+      architecture: {
+        title: "System Architecture",
+        components: [
+          {
+            name: "Input Processing",
+            description: "Monitors input folder for new text documents and triggers workflow. Handles initial document parsing and metadata extraction."
+          },
+          {
+            name: "LLM Processing",
+            description: "Uses Ollama for local LLM processing, with configurable model selection and intelligent prompt engineering for optimal content generation"
+          },
+          {
+            name: "Storage Layer",
+            description: "MongoDB integration for local content management and persistence, ensuring complete data sovereignty and efficient retrieval"
+          },
+          {
+            name: "Review System",
+            description: "Discord bot integration enabling human review, content approval, and regeneration requests for subpar outputs"
+          },
+          {
+            name: "Workflow Automation",
+            description: "n8n orchestration handling the entire pipeline from input to publication, with comprehensive error handling and recovery mechanisms"
+          }
+        ]
+      },
+      implementation: "The system is built around n8n for workflow automation, integrating Ollama for local LLM processing, MongoDB for data storage, and Discord for content review. The workflow monitors an input folder for new documents, processes them through the LLM, and stages them for review. Users can trigger content regeneration through Discord commands if the output doesn't meet quality standards. The MongoDB integration ensures all data remains under user control, while the n8n workflow can be customized to run on schedule or monitor for new inputs continuously.",
+      challenges: "Key challenges included ensuring 100% local processing while maintaining performance, implementing robust error handling for LLM outputs, and creating a seamless approval workflow. The solution demonstrates that powerful content creation tools can operate entirely locally without compromising on features or usability. Initial setup complexity was addressed through comprehensive documentation and streamlined configuration processes.",
+      setup: [
+        "Clone the repository and install dependencies",
+        "Set up n8n and import the workflow",
+        "Install and run Ollama locally",
+        "Set up Discord server and bot for content review",
+        "Configure credentials for MongoDB, Discord, and Ollama",
+        "Customize workflow timing and monitoring settings",
+        "Place text documents in input folder",
+        "Review and manage content through Discord interface"
+      ]
+    },
+    technologies: [
+      "n8n",
+      "Ollama",
+      "MongoDB",
+      "Node.js",
+      "Discord API",
+      "LLM Integration",
+      "Workflow Automation",
+      "Local AI Processing"
+    ],
+    github: "https://github.com/My80vette/N8N_Workflows/tree/AutomatedBlogBot"
   }
 ];
 
