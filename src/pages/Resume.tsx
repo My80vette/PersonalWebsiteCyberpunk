@@ -13,46 +13,40 @@ const ResumeContainer = styled(motion.div)`
 `;
 // This is where we create a styled component for the resume container, which will hold all the resume sections
 const Section = styled.section`
-  background: rgba(0, 0, 0, 0.7);
-  border: 2px solid var(--win95-border);
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
   padding: 2rem;
   margin-bottom: 2rem;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
-  }
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 
   &:hover {
-    box-shadow: 0 0 20px var(--neon-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   }
 `;
 // This is where we create a styled component for the resume section, which will hold each section of the resume
 const SectionTitle = styled(Title)`
-  color: var(--neon-blue) !important;
-  margin-bottom: 1.5rem !important;
-  font-family: 'VT323', monospace !important;
+  &.ant-typography {
+    color: var(--primary-blue) !important;
+    margin-bottom: 1.5rem !important;
+    font-family: 'Inter', sans-serif !important;
+  }
 `;
 // This is where we create a styled component for the section title, which will be used for each section of the resume
 const StyledTimeline = styled(Timeline)`
   .ant-timeline-item-content {
-    color: var(--neon-blue);
+    color: var(--text-primary);
   }
 
   .ant-timeline-item-tail {
-    border-left: 2px solid var(--neon-pink);
+    border-left: 1px solid var(--border-color);
   }
 
   .ant-timeline-item-head {
-    background: var(--neon-blue);
-    border-color: var(--neon-pink);
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
   }
 `;
 // This is where we create a styled component for the timeline, which will hold the timeline items for each section of the resume
@@ -60,30 +54,33 @@ const SkillTag = styled.span`
   display: inline-block;
   padding: 4px 12px;
   margin: 4px;
-  background: var(--win95-grey);
-  border: 2px solid var(--win95-border);
-  color: #000;
-  font-family: 'VT323', monospace;
-  cursor: default;
+  background: var(--hover-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 
   &:hover {
-    background: #000;
-    color: var(--neon-blue);
-    box-shadow: 0 0 10px var(--neon-blue);
+    background: rgba(0, 243, 255, 0.1);
+    color: var(--primary-blue);
+    border-color: var(--primary-blue);
   }
 `;
 // This is where we create a styled component for the skill tag, which will be used to display each skill in the skills section of the resume
 const ContactButton = styled(Button)`
   margin: 8px;
-  background: var(--win95-grey) !important;
-  border: 2px solid var(--win95-border) !important;
-  color: #000 !important;
-  font-family: 'VT323', monospace !important;
+  background: var(--hover-color) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+  font-family: 'Inter', sans-serif !important;
+  border-radius: 8px;
+  transition: all 0.2s ease;
 
   &:hover {
-    background: #000 !important;
-    color: var(--neon-blue) !important;
-    box-shadow: 0 0 10px var(--neon-blue);
+    background: rgba(0, 243, 255, 0.1) !important;
+    color: var(--primary-blue) !important;
+    border-color: var(--primary-blue) !important;
   }
 `;
 // This is where we create a styled component for the contact button, which will be used for the download resume, linkedin, and github buttons
@@ -95,9 +92,9 @@ const SkillsGrid = styled.div`
 // This is where we create a styled component for the skills grid, which will hold the skill categories in a grid layout
 const SkillCategory = styled.div`
   h3 {
-    color: var(--neon-pink);
+    color: var(--primary-blue);
     margin-bottom: 1rem;
-    font-family: 'VT323', monospace;
+    font-family: 'Inter', sans-serif;
   }
 `;
 // This is where we create a styled component for the skill category, which will hold the skills for each category in the skills section of the resume
@@ -132,7 +129,7 @@ const Resume = () => {
     >
       <Section>
         <SectionTitle level={2}>Professional Summary</SectionTitle>
-        <Paragraph style={{ color: 'var(--neon-blue)' }}>
+        <Paragraph style={{ color: 'var(--text-primary)' }}>
           Recent Software Engineering graduate from Embry-Riddle Aeronautical University with a strong foundation in full-stack 
           development and AI/ML technologies. Experienced in developing and deploying AI-powered applications, with a focus on 
           large language models and automation solutions.
@@ -154,13 +151,13 @@ const Resume = () => {
         <SectionTitle level={2}>Experience</SectionTitle>
         <StyledTimeline>
           <Timeline.Item>
-            <Title level={4} style={{ color: 'var(--neon-blue)' }}>
+            <Title level={4} style={{ color: 'var(--text-primary)' }}>
               Backend Software Development Intern - CashOn
             </Title>
-            <Paragraph style={{ color: 'var(--neon-pink)' }}>
+            <Paragraph style={{ color: 'var(--text-secondary)' }}>
               December 2024 - Janurary 2025
             </Paragraph>
-            <Paragraph style={{ color: 'var(--neon-blue)' }}>
+            <Paragraph style={{ color: 'var(--text-primary)' }}>
              • Architected a sophisticated TypeScript/JavaScript and PostgreSQL data management system with variable refresh rates that purged over 12,000 stale property valuations while maintaining precise timestamp integrity.<br/>
              • Engineered a persistent Chrome storage caching mechanism that tracked property data collection progress across sessions, enabling prioritization of new property acquisition before refreshing existing records.<br/>
              • Devised a dynamic filter-based fetching strategy that systematically segmented search parameters by price ranges and bedroom counts to circumvent Zillow's 500-property API limitation.<br/>
@@ -170,13 +167,13 @@ const Resume = () => {
             </Paragraph>
           </Timeline.Item>
           <Timeline.Item>
-            <Title level={4} style={{ color: 'var(--neon-blue)' }}>
+            <Title level={4} style={{ color: 'var(--text-primary)' }}>
               Senior Design Capstone - JPL Sponsored RAG System
             </Title>
-            <Paragraph style={{ color: 'var(--neon-pink)' }}>
+            <Paragraph style={{ color: 'var(--text-secondary)' }}>
               August 2023 - May 2024
             </Paragraph>
-            <Paragraph style={{ color: 'var(--neon-blue)' }}>
+            <Paragraph style={{ color: 'var(--text-primary)' }}>
               • Led a cross-functional team in developing an innovative Cloud-Based Retrieval Augmented Generation Platform for the Jet Propulsion Laboratory.<br/>
               • Architected an Azure-based backend solution enabling users to query Azure AI Search and receive GPT-3.5 powered responses with 72% fewer hallucinations.<br/>
               • Negotiated with JPL stakeholders to define precise system requirements and project parameters, translating complex needs into technical specifications.<br/>
@@ -186,13 +183,13 @@ const Resume = () => {
             </Paragraph>
           </Timeline.Item>
           <Timeline.Item>
-            <Title level={4} style={{ color: 'var(--neon-blue)' }}>
+            <Title level={4} style={{ color: 'var(--text-primary)' }}>
               DevOps Engineering Intern
             </Title>
-            <Paragraph style={{ color: 'var(--neon-pink)' }}>
+            <Paragraph style={{ color: 'var(--text-secondary)' }}>
               May 2023 - December 2023
             </Paragraph>
-            <Paragraph style={{ color: 'var(--neon-blue)' }}>
+            <Paragraph style={{ color: 'var(--text-primary)' }}>
              • Restructured the SQL Server schema to accommodate new data sources, synchronizing over 30,000 customer records with minimal system downtime throughout the transition.<br/>
              • Transformed more than 30 Python ETL scripts to integrate with Snowflake, enabling seamless connections to new data sources without disrupting production data flows.<br/>
              • Collaborated with specialists from Data Ideology to reconfigure data source endpoints, maintaining operational continuity during complex infrastructure migration.<br/>
@@ -208,13 +205,13 @@ const Resume = () => {
         <SectionTitle level={2}>Non-Software Professional Experience</SectionTitle>
         <StyledTimeline>
           <Timeline.Item>
-            <Title level={4} style={{ color: 'var(--neon-blue)' }}>
+            <Title level={4} style={{ color: 'var(--text-primary)' }}>
               Kitchen Manager - Chipotle
             </Title>
-            <Paragraph style={{ color: 'var(--neon-pink)' }}>
+            <Paragraph style={{ color: 'var(--text-secondary)' }}>
               2022 - 2023
             </Paragraph>
-            <Paragraph style={{ color: 'var(--neon-blue)' }}>
+            <Paragraph style={{ color: 'var(--text-primary)' }}>
               • Directed high-efficiency kitchen operations, optimizing inventory management and production schedules to ensure peak operational performance.<br/>
               • Applied advanced analytical techniques to forecast sales trends and refine ordering strategies, minimizing waste and maximizing profitability.<br/>
               • Demonstrated exceptional time management and organizational prowess, seamlessly balancing demanding academic pursuits with high-pressure managerial responsibilities.<br/>
@@ -222,13 +219,13 @@ const Resume = () => {
             </Paragraph>
           </Timeline.Item>
           <Timeline.Item>
-            <Title level={4} style={{ color: 'var(--neon-blue)' }}>
+            <Title level={4} style={{ color: 'var(--text-primary)' }}>
               Team Trainer - Taco Bell
             </Title>
-            <Paragraph style={{ color: 'var(--neon-pink)' }}>
+            <Paragraph style={{ color: 'var(--text-secondary)' }}>
               2021 - 2022
             </Paragraph>
-            <Paragraph style={{ color: 'var(--neon-blue)' }}>
+            <Paragraph style={{ color: 'var(--text-primary)' }}>
               • Spearheaded the onboarding and development of new team members, cultivating a highly skilled and efficient workforce within a fast-paced environment.<br/>
               • Implemented innovative training modules that significantly enhanced team performance and operational proficiency, leading to measurable improvements in service speed and accuracy.<br/>
               • Served as a key mentor and performance coach, fostering a collaborative team culture and driving consistent achievement of performance metrics.<br/>
@@ -236,13 +233,13 @@ const Resume = () => {
             </Paragraph>
           </Timeline.Item>
           <Timeline.Item>
-            <Title level={4} style={{ color: 'var(--neon-blue)' }}>
+            <Title level={4} style={{ color: 'var(--text-primary)' }}>
               Head Shift Lead - Dairy Queen
             </Title>
-            <Paragraph style={{ color: 'var(--neon-pink)' }}>
+            <Paragraph style={{ color: 'var(--text-secondary)' }}>
               2018 - 2021
             </Paragraph>
-            <Paragraph style={{ color: 'var(--neon-blue)' }}>
+            <Paragraph style={{ color: 'var(--text-primary)' }}>
               • Orchestrated high-performance teams in a dynamic, high-volume environment, consistently exceeding operational targets.<br/>
               • Cultivated a culture of seamless communication and proactive conflict resolution, resulting in enhanced customer satisfaction and team cohesion.<br/>
               • Mastered advanced team leadership strategies, implementing innovative training protocols that significantly boosted interpersonal effectiveness.<br/>
@@ -250,13 +247,13 @@ const Resume = () => {
             </Paragraph>
           </Timeline.Item>
           <Timeline.Item>
-            <Title level={4} style={{ color: 'var(--neon-blue)' }}>
+            <Title level={4} style={{ color: 'var(--text-primary)' }}>
               Car Detailing
             </Title>
-            <Paragraph style={{ color: 'var(--neon-pink)' }}>
+            <Paragraph style={{ color: 'var(--text-secondary)' }}>
               2018 - Present
             </Paragraph>
-            <Paragraph style={{ color: 'var(--neon-blue)' }}>
+            <Paragraph style={{ color: 'var(--text-primary)' }}>
               • Established and managed a thriving entrepreneurial venture, demonstrating exceptional business acumen and client acquisition skills.<br/>
               • Forged strong client relationships through expert negotiation and personalized service, consistently exceeding expectations and fostering repeat business.<br/>
               • Implemented sophisticated financial management systems, accurately tracking revenue, expenses, and profitability to drive strategic growth.<br/>
@@ -270,13 +267,13 @@ const Resume = () => {
         <SectionTitle level={2}>Education</SectionTitle>
         <StyledTimeline>
           <Timeline.Item>
-            <Title level={4} style={{ color: 'var(--neon-blue)' }}>
+            <Title level={4} style={{ color: 'var(--text-primary)' }}>
               Bachelor of Science in Software Engineering - Focus in Cyber-Security
             </Title>
-            <Paragraph style={{ color: 'var(--neon-pink)' }}>
+            <Paragraph style={{ color: 'var(--text-secondary)' }}>
               Embry-Riddle Aeronautical University • 2020 - 2024
             </Paragraph>
-            <Paragraph style={{ color: 'var(--neon-blue)' }}>
+            <Paragraph style={{ color: 'var(--text-primary)' }}>
               Senior Design Project: AI-Powered Code Generation Platform
             </Paragraph>
           </Timeline.Item>
@@ -301,7 +298,7 @@ const Resume = () => {
           </SkillCategory>
 
           <SkillCategory>
-            <h3>AI & ML Tools</h3>
+            <h3>AI & Machine Learning</h3>
             {skills.aiTools.map((skill) => (
               <SkillTag key={skill}>{skill}</SkillTag>
             ))}

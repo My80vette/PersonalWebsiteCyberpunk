@@ -1,51 +1,71 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { Card, Tag, Space, Typography, Image } from 'antd'; // Add Image import
-import { GithubOutlined } from '@ant-design/icons';
+import { Card, Tag, Space, Typography, Image, List, Divider } from 'antd';
+import { GithubOutlined, CheckCircleOutlined, CodeOutlined, BulbOutlined } from '@ant-design/icons';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-const { Paragraph } = Typography;
+const { Paragraph, Title } = Typography;
 
 const ProjectsContainer = styled(motion.div)`
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 const ProjectCard = styled(Card)`
-  background: rgba(0, 0, 0, 0.7) !important;
-  border: 2px solid var(--win95-border) !important;
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
   
   .ant-card-head {
-    background: var(--win95-grey);
-    border-bottom: 2px solid var(--win95-border);
+    background: transparent;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.5rem;
   }
 
   .ant-card-head-title {
-    color: #000;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .ant-card-body {
+    padding: 1.5rem;
   }
 
   &:hover {
-    box-shadow: 0 0 15px var(--neon-blue) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
   }
 `;
 
-const CodeBlock = styled(SyntaxHighlighter)`
-  margin: 1rem 0;
-  border-radius: 4px;
-  font-family: 'VT323', monospace !important;
+const ProjectImage = styled(Image)`
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 `;
 
 const TechTag = styled(Tag)`
-  background: var(--neon-blue) !important;
-  color: #000 !important;
-  border: none !important;
-  padding: 4px 8px;
+  background: var(--hover-color) !important;
+  color: var(--primary-blue) !important;
+  border: 1px solid var(--border-color) !important;
+  padding: 4px 12px;
   margin: 4px;
-  font-family: 'VT323', monospace;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(0, 243, 255, 0.1) !important;
+    border-color: var(--primary-blue) !important;
+  }
 `;
 
 const LinkButton = styled.a`
@@ -53,17 +73,93 @@ const LinkButton = styled.a`
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background: var(--win95-grey);
-  border: 2px solid var(--win95-border);
-  color: #000;
+  background: var(--hover-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
   text-decoration: none;
-  font-family: 'VT323', monospace;
+  border-radius: 8px;
+  transition: all 0.2s ease;
   margin: 8px;
 
   &:hover {
-    background: #000;
-    color: var(--neon-blue);
-    box-shadow: 0 0 10px var(--neon-blue);
+    background: rgba(0, 243, 255, 0.1);
+    color: var(--primary-blue);
+    border-color: var(--primary-blue);
+  }
+`;
+
+const FeatureList = styled(List<string>)`
+  .ant-list-item {
+    color: var(--text-secondary);
+    padding: 8px 0;
+  }
+`;
+
+const SectionTitle = styled(Title)`
+  &.ant-typography {
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+    font-size: 1.2rem !important;
+  }
+`;
+
+const CodeBlock = styled(SyntaxHighlighter)`
+  margin: 1rem 0;
+  border-radius: 8px;
+  font-family: 'Inter', monospace !important;
+  font-size: 0.9rem;
+`;
+
+const ArchitectureGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+`;
+
+const ArchitectureItem = styled.div`
+  background: var(--hover-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  h4 {
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin: 0;
+  }
+`;
+
+const ChallengeSection = styled.div`
+  background: var(--hover-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+
+  h4 {
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin: 0;
+  }
+`;
+
+const SetupList = styled(List<string>)`
+  .ant-list-item {
+    color: var(--text-secondary);
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 `;
 
@@ -248,75 +344,79 @@ const CodeExamples = () => {
       transition={{ duration: 0.5 }}
     >
       {projects.map((project) => (
-        <ProjectCard
-          key={project.id}
-          title={project.title}
-          extra={
-            <Space>
-              <LinkButton href={project.github} target="_blank">
-                <GithubOutlined /> GitHub
-              </LinkButton>
-            </Space>
-          }
-        >
-          <Paragraph style={{ color: 'var(--neon-blue)' }}>
-            {project.description}
-          </Paragraph>
-          
-          <Image
+        <ProjectCard key={project.id}>
+          <ProjectImage
             src={project.image}
             alt={project.title}
-            style={{
-              width: '100%',
-              marginBottom: '2rem',
-              borderRadius: '4px',
-              border: '1px solid var(--neon-blue)',
-              display: 'block',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-              maxWidth: '80%' // This helps ensure the image isn't too wide while centered
-            }}
+            preview={false}
           />
+          
+          <Space direction="vertical" size="large" style={{ width: '100%' }}>
+            <div>
+              <Title level={3}>{project.title}</Title>
+              <Paragraph>{project.description}</Paragraph>
+            </div>
 
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ color: 'var(--neon-blue)', marginBottom: '1rem' }}>Key Features</h3>
-            <ul style={{ color: '#fff' }}>
-              {project.technicalDetails.features.map((feature, index) => (
-                <li key={index}>{feature}</li>
-              ))}
-            </ul>
-          </div>
+            <div>
+              <SectionTitle level={4}>
+                <CheckCircleOutlined /> Key Features
+              </SectionTitle>
+              <FeatureList
+                dataSource={project.technicalDetails.features}
+                renderItem={(item) => (
+                  <List.Item>{item}</List.Item>
+                )}
+              />
+            </div>
 
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ color: 'var(--neon-blue)', marginBottom: '1rem' }}>System Architecture and Data Flow</h3>
-            {project.technicalDetails.architecture.components.map((component, index) => (
-              <div key={index} style={{ marginBottom: '1rem' }}>
-                <h4 style={{ color: 'var(--neon-blue)' }}>{component.name}</h4>
-                <Paragraph style={{ color: '#fff' }}>{component.description}</Paragraph>
+            <div>
+              <SectionTitle level={4}>
+                <CodeOutlined /> Architecture
+              </SectionTitle>
+              <ArchitectureGrid>
+                {project.technicalDetails.architecture.components.map((component, index) => (
+                  <ArchitectureItem key={index}>
+                    <h4>{component.name}</h4>
+                    <p>{component.description}</p>
+                  </ArchitectureItem>
+                ))}
+              </ArchitectureGrid>
+            </div>
+
+            <div>
+              <SectionTitle level={4}>
+                <BulbOutlined /> Technologies Used
+              </SectionTitle>
+              <Space wrap>
+                {project.technologies.map((tech) => (
+                  <TechTag key={tech}>{tech}</TechTag>
+                ))}
+              </Space>
+            </div>
+
+            {project.technicalDetails.challenges && (
+              <ChallengeSection>
+                <h4>Key Challenges & Solutions</h4>
+                <p>{project.technicalDetails.challenges}</p>
+              </ChallengeSection>
+            )}
+
+            {project.technicalDetails.setup && (
+              <div>
+                <SectionTitle level={4}>Setup Instructions</SectionTitle>
+                <SetupList
+                  dataSource={project.technicalDetails.setup}
+                  renderItem={(item) => (
+                    <List.Item>{item}</List.Item>
+                  )}
+                />
               </div>
-            ))}
-          </div>
+            )}
 
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ color: 'var(--neon-blue)', marginBottom: '1rem' }}>Implementation</h3>
-            <Paragraph style={{ color: '#fff' }}>
-              {project.technicalDetails.implementation}
-            </Paragraph>
-          </div>
-
-          <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ color: 'var(--neon-blue)', marginBottom: '1rem' }}>Challenges</h3>
-            <Paragraph style={{ color: '#fff' }}>
-              {project.technicalDetails.challenges}
-            </Paragraph>
-          </div>
-
-          <div>
-            <h3 style={{ color: 'var(--neon-blue)', marginBottom: '1rem' }}>Technologies</h3>
-            {project.technologies.map((tech) => (
-              <TechTag key={tech}>{tech}</TechTag>
-            ))}
-          </div>
+            <LinkButton href={project.github} target="_blank">
+              <GithubOutlined /> View on GitHub
+            </LinkButton>
+          </Space>
         </ProjectCard>
       ))}
     </ProjectsContainer>
