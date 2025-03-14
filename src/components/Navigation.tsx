@@ -99,7 +99,7 @@ const Navigation = () => {
 
   const navItems = [
     { path: '/', icon: <HomeOutlined />, label: 'Home' },
-    { path: '/code', icon: <CodeOutlined />, label: 'Code & Projects' },
+    { path: '/code', icon: <CodeOutlined />, label: 'Showcase' },
     { path: '/resume', icon: <FileOutlined />, label: 'Resume' },
     { path: '/blog', icon: <UserOutlined />, label: 'Blog' },
     { path: '/ai-art', icon: <PictureOutlined />, label: 'AI Art' },

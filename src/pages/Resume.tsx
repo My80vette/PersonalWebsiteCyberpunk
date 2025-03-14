@@ -273,9 +273,6 @@ const Resume = () => {
             <Paragraph style={{ color: 'var(--text-secondary)' }}>
               Embry-Riddle Aeronautical University • 2020 - 2024
             </Paragraph>
-            <Paragraph style={{ color: 'var(--text-primary)' }}>
-              Senior Design Project: AI-Powered Code Generation Platform
-            </Paragraph>
           </Timeline.Item>
         </StyledTimeline>
       </Section>
