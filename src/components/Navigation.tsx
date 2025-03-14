@@ -4,35 +4,39 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CodeOutlined, PictureOutlined, FileOutlined, UserOutlined, HomeOutlined } from '@ant-design/icons';
 import { useState, useEffect } from 'react';
 
+const NavList = styled.ul`
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+`;
+
 const NavBar = styled(motion.nav)`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background: var(--card-bg);
-  backdrop-filter: blur(10px);
-  padding: 1rem;
   z-index: 1000;
-  display: flex;
-  justify-content: center;
-  border-bottom: 1px solid var(--border-color);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-`;
+  padding: 1rem 2rem;
+  background: transparent;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(18, 18, 18, 0.8);
+    backdrop-filter: blur(10px);
+  }
 
-const NavList = styled.ul`
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
-  max-width: 1200px;
-  width: 100%;
-  justify-content: center;
+  & ${NavList} {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
 
-  @media (max-width: 768px) {
-    flex-wrap: wrap;
-    justify-content: center;
+  &:hover ${NavList} {
+    opacity: 1;
+    transform: translateY(0);
   }
 `;
 
@@ -46,14 +50,20 @@ const NavLink = styled(Link)<{ $isActive?: boolean }>`
   gap: 0.5rem;
   padding: 0.75rem 1.25rem;
   text-decoration: none;
-  color: var(--text-primary);
-  background: ${props => props.$isActive ? 'var(--hover-color)' : 'transparent'};
-  border: 1px solid ${props => props.$isActive ? 'var(--primary-blue)' : 'var(--border-color)'};
+  color: ${props => props.$isActive ? 'var(--primary-blue)' : 'var(--text-primary)'};
+  background: ${props => props.$isActive ? 'rgba(0, 0, 0, 0)' : 'transparent'};
+  border: 1px solid ${props => props.$isActive ? 'var(--primary-blue)' : 'transparent'};
   border-radius: 8px;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 500;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out, opacity 0.3s ease;
+  opacity: 0;
+  
+  ${NavBar}:hover & {
+    opacity: 1;
+    background: ${props => props.$isActive ? 'rgba(0, 0, 0, 0.5)' : 'transparent'};
+  }
   
   &:hover {
     background: var(--hover-color);
@@ -61,11 +71,6 @@ const NavLink = styled(Link)<{ $isActive?: boolean }>`
     border-color: var(--primary-blue);
     transform: translateY(-1px);
   }
-
-  ${props => props.$isActive && `
-    color: var(--primary-blue);
-    border-color: var(--primary-blue);
-  `}
 `;
 
 const Navigation = () => {
@@ -97,7 +102,6 @@ const Navigation = () => {
     { path: '/code', icon: <CodeOutlined />, label: 'Code & Projects' },
     { path: '/resume', icon: <FileOutlined />, label: 'Resume' },
     { path: '/blog', icon: <UserOutlined />, label: 'Blog' },
-    { path: '/ai-agents', icon: <UserOutlined />, label: 'AI Agents' },
     { path: '/ai-art', icon: <PictureOutlined />, label: 'AI Art' },
   ];
 

@@ -345,6 +345,10 @@ const CodeExamples = () => {
     >
       {projects.map((project) => (
         <ProjectCard key={project.id}>
+          <div>
+              <Title level={3}>{project.title}</Title>
+              <Paragraph>{project.description}</Paragraph>
+          </div>
           <ProjectImage
             src={project.image}
             alt={project.title}
@@ -352,10 +356,6 @@ const CodeExamples = () => {
           />
           
           <Space direction="vertical" size="large" style={{ width: '100%' }}>
-            <div>
-              <Title level={3}>{project.title}</Title>
-              <Paragraph>{project.description}</Paragraph>
-            </div>
 
             <div>
               <SectionTitle level={4}>

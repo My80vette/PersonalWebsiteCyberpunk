@@ -10,7 +10,7 @@ import AiArt from './pages/AiArt';
 import CodeExamples from './pages/CodeExamples';
 import Resume from './pages/Resume';
 import Blog from './pages/Blog';
-
+import GlobalStyles from './styles/GlobalStyles';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -106,29 +106,32 @@ const customTheme = {
 
 function App() {
   return (
-    <ConfigProvider theme={customTheme}>
-      <Router>
-        <GlobalStyle />
-        <AppWrapper
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Navigation />
-          <ContentWrapper>
-            <AnimatePresence mode="wait">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/ai-art" element={<AiArt />} />
-                <Route path="/code" element={<CodeExamples />} />
-                <Route path="/resume" element={<Resume />} />
-                <Route path="/blog" element={<Blog />} />
-              </Routes>
-            </AnimatePresence>
-          </ContentWrapper>
-        </AppWrapper>
-      </Router>
-    </ConfigProvider>
+    <>
+      <GlobalStyles />
+      <ConfigProvider theme={customTheme}>
+        <Router>
+          <GlobalStyle />
+          <AppWrapper
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Navigation />
+            <ContentWrapper>
+              <AnimatePresence mode="wait">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/ai-art" element={<AiArt />} />
+                  <Route path="/code" element={<CodeExamples />} />
+                  <Route path="/resume" element={<Resume />} />
+                  <Route path="/blog" element={<Blog />} />
+                </Routes>
+              </AnimatePresence>
+            </ContentWrapper>
+          </AppWrapper>
+        </Router>
+      </ConfigProvider>
+    </>
   );
 }
 
