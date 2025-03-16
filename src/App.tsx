@@ -10,6 +10,7 @@ import AiArt from './pages/AiArt';
 import CodeExamples from './pages/CodeExamples';
 import Resume from './pages/Resume';
 import Blog from './pages/Blog';
+import Podcast from './pages/Podcast';
 import GlobalStyles from './styles/GlobalStyles';
 
 const GlobalStyle = createGlobalStyle`
@@ -125,6 +126,7 @@ function App() {
                   <Route path="/code" element={<CodeExamples />} />
                   <Route path="/resume" element={<Resume />} />
                   <Route path="/blog" element={<Blog />} />
+                  <Route path="/podcast" element={<Podcast />} />
                 </Routes>
               </AnimatePresence>
             </ContentWrapper>

@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CodeOutlined, PictureOutlined, FileOutlined, UserOutlined, HomeOutlined } from '@ant-design/icons';
+import { CodeOutlined, PictureOutlined, FileOutlined, UserOutlined, HomeOutlined, AudioOutlined } from '@ant-design/icons';
 import { useState, useEffect } from 'react';
 
 const NavList = styled.ul`
@@ -103,6 +103,7 @@ const Navigation = () => {
     { path: '/resume', icon: <FileOutlined />, label: 'Resume' },
     { path: '/blog', icon: <UserOutlined />, label: 'Blog' },
     { path: '/ai-art', icon: <PictureOutlined />, label: 'AI Art' },
+    { path: '/podcast', icon: <AudioOutlined />, label: 'Podcast' },
   ];
 
   return (
