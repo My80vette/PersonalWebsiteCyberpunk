@@ -163,7 +163,13 @@ const SetupList = styled(List<string>)`
   }
 `;
 
-// Sample project data - replace with your actual projects
+const ImageGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+`;
+
 const projects = [
   {
     id: 1,
@@ -222,7 +228,7 @@ const projects = [
     id: 2,
     title: "MNIST Handwritten Digit Classification - Convolutional Neural Network",
     description: "This project involved the development of a Convolutional Neural Network (CNN) for handwritten digit classification using the MNIST dataset. The goal was to build a robust model capable of accurately identifying digits from 0 to 9. As the sole developer, I designed, implemented, and iteratively improved the CNN architecture using TensorFlow and Keras, achieving a final accuracy of 99%.",
-    image: "/workflows/MNISTArchitecture.PNG", // Make sure this image exists in your public folder
+    images: ["/workflows/MNIST.png", "/workflows/cnnbasic.png"],  // Changed from single image to array
     technicalDetails: {
       features: [
         "Developed custom CNN architecture from scratch achieving 99% accuracy",
@@ -265,7 +271,7 @@ const projects = [
       "Deep Learning",
       "Image Classification"
     ],
-    github: "https://github.com/yourusername/mnist-classification" // Replace with actual GitHub link
+    github: "https://github.com/My80vette/Handwriting-Image-Classifier-Python"
   },
   {
     id: 3,
@@ -332,6 +338,69 @@ const projects = [
       "Local AI Processing"
     ],
     github: "https://github.com/My80vette/N8N_Workflows/tree/AutomatedBlogBot"
+  },
+  {
+    "id": 4,
+    "title": "CSM-1B Speech Synthesis Integration",
+    "description": "A Flask-based web application that integrates the Sesame CSM-1B text-to-speech model, providing an accessible interface for high-quality speech synthesis. This solution allows users to generate natural-sounding speech from text input through a clean web interface while maintaining full control over voice parameters and output thanks to local, open-source models.",
+    "image": "/workflows/texttospeechdemo.png",
+    "technicalDetails": {
+      "features": [
+        "Web-based interface for text-to-speech generation with Flask",
+        "Integration with state-of-the-art CSM-1B neural speech model",
+        "Speaker selection for varied voice characteristics",
+        "Maximum audio length configuration and UUID-based file naming",
+        "RESTful API for programmatic access and real-time audio streaming",
+        "8-bit quantization support for reduced memory requirements (I only have a 3060TI with 8GB VRAM)",
+        "Hugging Face integration"
+      ],
+      "architecture": {
+        "title": "System Architecture",
+        "components": [
+          {
+            "name": "Web Interface Layer",
+            "description": "Flask-based web server providing HTML frontend and RESTful endpoints. Handles user input validation, response formatting, and manages temporary file storage and serving."
+          },
+          {
+            "name": "Model Interface Layer",
+            "description": "Custom Python wrapper (CSMInterface) for the Hugging Face-hosted model. Handles authentication, model loading, and inference while providing a clean API for speech generation."
+          },
+          {
+            "name": "Speech Processing Layer",
+            "description": "Leverages PyTorch and TorchAudio for tensor operations and audio processing. Supports context-aware speech generation and handles audio format conversion."
+          },
+          {
+            "name": "Authentication Layer",
+            "description": "Integrates with Hugging Face token-based authentication, supporting both direct token passing and environment variable configuration to ensure license compliance."
+          }
+        ]
+      },
+      "implementation": "The system uses Flask to serve a responsive web interface that accepts text input and speech parameters. The CSMInterface class handles the complex logic of authenticating with Hugging Face, downloading and initializing the CSM-1B model, and generating speech using PyTorch. Audio output is temporarily stored with unique identifiers and served to users for playback or download. The application supports both standalone generation and context-aware speech synthesis, enabling natural-sounding conversations with proper intonation based on conversational history.",
+      "challenges": "Key challenges included optimizing memory usage for the large neural model (solved with 8-bit quantization).",
+      "setup": [
+        "Install Python 3.10 or newer and required dependencies",
+        "Create a Hugging Face account and accept the CSM-1B model license",
+        "Generate a Hugging Face access token with read permissions",
+        "Set up authentication through environment variables or direct token",
+        "Ensure CUDA-capable GPU with at least 8GB VRAM for optimal performance",
+        "Clone the repository and install the required packages",
+        "Run the Flask application to start the web server",
+        "Access the web interface to generate speech samples"
+      ]
+    },
+    "technologies": [
+      "Python",
+      "Flask",
+      "PyTorch",
+      "TorchAudio",
+      "Hugging Face Hub",
+      "Neural TTS Models",
+      "RESTful API Design",
+      "Web Audio API",
+      "CUDA Acceleration",
+      "JWT Authentication"
+    ],
+    "github": "https://github.com/yourusername/csm-tts-interface"
   }
 ];
 
@@ -349,11 +418,24 @@ const CodeExamples = () => {
               <Title level={3}>{project.title}</Title>
               <Paragraph>{project.description}</Paragraph>
           </div>
-          <ProjectImage
-            src={project.image}
-            alt={project.title}
-            preview={false}
-          />
+          <ImageGrid>
+            {Array.isArray(project.images) ? (
+                project.images.map((image, index) => (
+                    <ProjectImage
+                        key={index}
+                        src={image}
+                        alt={`${project.title} - Image ${index + 1}`}
+                        preview={false}
+                    />
+                ))
+            ) : (
+                <ProjectImage
+                    src={project.image}
+                    alt={project.title}
+                    preview={false}
+                />
+            )}
+          </ImageGrid>
           
           <Space direction="vertical" size="large" style={{ width: '100%' }}>
 
