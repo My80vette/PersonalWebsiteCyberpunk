@@ -60,48 +60,110 @@ const ArtContainer = styled(motion.div)`
   background: rgba(18, 18, 18, 0.6);  // Changed from solid #121212 to translucent
 `;
 
-// Sample art data - replace with your actual AI art
-const artworks = [
-  {
-    id: 1,
-    title: "Lovely - Billie Eilish (With Khalid)",
-    description: "Passing the lyrics to one of my favorite songs on my coding playlist through a neural network, I created this piece. The song is 'Lovely' by Billie Eilish and Khalid and revolves around topics like mental health, vunerability, and isolation. 150 Steps, 2k Resolution, 1.0 CFG Scale. 21 Min Generation Time on my 3060Ti with a generic 100 word negative prompt running on SD 1.5.",
-    image: "/art/lovely.png"
-  },
-  // Add more artwork entries here
-];
+const AccordionContainer = styled(motion.div)`
+  width: 100%;
+  max-width: 1200px;
+  margin: 6rem auto 2rem;
+  padding: 0 2rem;
+`;
+
+const AccordionSection = styled(motion.div)`
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--win95-border);
+  margin-bottom: 1rem;
+`;
+
+const AccordionHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  color: var(--neon-blue);
+  
+  &:hover {
+    background: rgba(0, 0, 0, 0.6);
+  }
+`;
+
+const AccordionContent = styled(motion.div)`
+  padding: 0 2rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+`;
+
+// Group artworks by category
+const artworkCategories = {
+  "Music Inspired": [
+    {
+      id: 1,
+      title: "Lovely - Billie Eilish (With Khalid)",
+      description: "Passing the lyrics to one of my favorite songs on my coding playlist through a neural network, I created this piece. The song is 'Lovely' by Billie Eilish and Khalid and revolves around topics like mental health, vunerability, and isolation. 150 Steps, 2k Resolution, 1.0 CFG Scale. 21 Min Generation Time on my 3060Ti with a generic 100 word negative prompt running on SD 1.5.",
+      image: "/art/lovely.png"
+    },
+    // Add more music-inspired artworks
+  ],
+  // Add more categories as needed
+};
 
 const AiArt = () => {
   const [selectedArt, setSelectedArt] = useState<number | null>(null);
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
   const handleArtClick = (id: number) => {
     setSelectedArt(id);
   };
 
-  const selectedArtwork = artworks.find(art => art.id === selectedArt);
+  const handleCategoryClick = (category: string) => {
+    setExpandedCategory(expandedCategory === category ? null : category);
+  };
+
+  const selectedArtwork = Object.values(artworkCategories)
+    .flat()
+    .find(art => art.id === selectedArt);
 
   return (
-    <GalleryContainer
+    <AccordionContainer
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {artworks.map((art) => (
-        <ArtCard
-          key={art.id}
-          onClick={() => handleArtClick(art.id)}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <Image
-            src={art.image}
-            alt={art.title}
-            preview={false}
-          />
-          <ArtTitle>{art.title}</ArtTitle>
-          <ArtDescription>{art.description}</ArtDescription>
-        </ArtCard>
+      {Object.entries(artworkCategories).map(([category, artworks]) => (
+        <AccordionSection key={category}>
+          <AccordionHeader onClick={() => handleCategoryClick(category)}>
+            <h2>{category}</h2>
+            <span>{expandedCategory === category ? '▼' : '▶'}</span>
+          </AccordionHeader>
+          <AnimatePresence>
+            {expandedCategory === category && (
+              <AccordionContent
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {artworks.map((art) => (
+                  <ArtCard
+                    key={art.id}
+                    onClick={() => handleArtClick(art.id)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Image
+                      src={art.image}
+                      alt={art.title}
+                      preview={false}
+                    />
+                    <ArtTitle>{art.title}</ArtTitle>
+                    <ArtDescription>{art.description}</ArtDescription>
+                  </ArtCard>
+                ))}
+              </AccordionContent>
+            )}
+          </AnimatePresence>
+        </AccordionSection>
       ))}
 
       <Modal
@@ -128,7 +190,7 @@ const AiArt = () => {
           </div>
         )}
       </Modal>
-    </GalleryContainer>
+    </AccordionContainer>
   );
 };
 
