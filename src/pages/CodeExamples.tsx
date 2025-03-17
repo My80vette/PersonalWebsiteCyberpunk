@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { Card, Tag, Space, Typography, Image, List, Divider } from 'antd';
-import { GithubOutlined, CheckCircleOutlined, CodeOutlined, BulbOutlined } from '@ant-design/icons';
+import { Card, Tag, Space, Typography, Image, List, Divider, Collapse } from 'antd';
+import { GithubOutlined, CheckCircleOutlined, CodeOutlined, BulbOutlined, SoundOutlined } from '@ant-design/icons';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
@@ -168,6 +168,64 @@ const ImageGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
   margin-bottom: 1.5rem;
+`;
+
+const StyledCollapse = styled(Collapse)`
+  background: transparent !important;
+  border: none !important;
+
+  .ant-collapse-item {
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 16px !important;
+    overflow: hidden;
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(10px);
+  }
+
+  .ant-collapse-header {
+    padding: 1.5rem !important;
+    background: transparent;
+    
+    .ant-collapse-header-text {
+      color: var(--text-primary) !important;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  }
+
+  .ant-collapse-content {
+    background: transparent !important;
+    border-top: 1px solid var(--border-color) !important;
+  }
+
+  .ant-collapse-content-box {
+    padding: 1.5rem !important;
+  }
+`;
+
+const AudioButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--hover-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 8px;
+
+  &:hover {
+    background: rgba(0, 243, 255, 0.1);
+    color: var(--primary-blue);
+    border-color: var(--primary-blue);
+  }
+`;
+
+const AudioPlayer = styled.audio`
+  display: none;
 `;
 
 const projects = [
@@ -412,95 +470,111 @@ const CodeExamples = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {projects.map((project) => (
-        <ProjectCard key={project.id}>
-          <div>
-              <Title level={3}>{project.title}</Title>
+      <StyledCollapse accordion>
+        {projects.map((project) => (
+          <Collapse.Panel key={project.id} header={project.title}>
+            <div>
               <Paragraph>{project.description}</Paragraph>
-          </div>
-          <ImageGrid>
-            {Array.isArray(project.images) ? (
+            </div>
+            <ImageGrid>
+              {Array.isArray(project.images) ? (
                 project.images.map((image, index) => (
-                    <ProjectImage
-                        key={index}
-                        src={image}
-                        alt={`${project.title} - Image ${index + 1}`}
-                        preview={false}
-                    />
-                ))
-            ) : (
-                <ProjectImage
-                    src={project.image}
-                    alt={project.title}
+                  <ProjectImage
+                    key={index}
+                    src={image}
+                    alt={`${project.title} - Image ${index + 1}`}
                     preview={false}
+                  />
+                ))
+              ) : (
+                <ProjectImage
+                  src={project.image}
+                  alt={project.title}
+                  preview={false}
                 />
-            )}
-          </ImageGrid>
-          
-          <Space direction="vertical" size="large" style={{ width: '100%' }}>
+              )}
+            </ImageGrid>
+            
+            <Space direction="vertical" size="large" style={{ width: '100%' }}>
 
-            <div>
-              <SectionTitle level={4}>
-                <CheckCircleOutlined /> Key Features
-              </SectionTitle>
-              <FeatureList
-                dataSource={project.technicalDetails.features}
-                renderItem={(item) => (
-                  <List.Item>{item}</List.Item>
-                )}
-              />
-            </div>
-
-            <div>
-              <SectionTitle level={4}>
-                <CodeOutlined /> Architecture
-              </SectionTitle>
-              <ArchitectureGrid>
-                {project.technicalDetails.architecture.components.map((component, index) => (
-                  <ArchitectureItem key={index}>
-                    <h4>{component.name}</h4>
-                    <p>{component.description}</p>
-                  </ArchitectureItem>
-                ))}
-              </ArchitectureGrid>
-            </div>
-
-            <div>
-              <SectionTitle level={4}>
-                <BulbOutlined /> Technologies Used
-              </SectionTitle>
-              <Space wrap>
-                {project.technologies.map((tech) => (
-                  <TechTag key={tech}>{tech}</TechTag>
-                ))}
-              </Space>
-            </div>
-
-            {project.technicalDetails.challenges && (
-              <ChallengeSection>
-                <h4>Key Challenges & Solutions</h4>
-                <p>{project.technicalDetails.challenges}</p>
-              </ChallengeSection>
-            )}
-
-            {project.technicalDetails.setup && (
               <div>
-                <SectionTitle level={4}>Setup Instructions</SectionTitle>
-                <SetupList
-                  dataSource={project.technicalDetails.setup}
+                <SectionTitle level={4}>
+                  <CheckCircleOutlined /> Key Features
+                </SectionTitle>
+                <FeatureList
+                  dataSource={project.technicalDetails.features}
                   renderItem={(item) => (
                     <List.Item>{item}</List.Item>
                   )}
                 />
               </div>
-            )}
 
-            <LinkButton href={project.github} target="_blank">
-              <GithubOutlined /> View on GitHub
-            </LinkButton>
-          </Space>
-        </ProjectCard>
-      ))}
+              <div>
+                <SectionTitle level={4}>
+                  <CodeOutlined /> Architecture
+                </SectionTitle>
+                <ArchitectureGrid>
+                  {project.technicalDetails.architecture.components.map((component, index) => (
+                    <ArchitectureItem key={index}>
+                      <h4>{component.name}</h4>
+                      <p>{component.description}</p>
+                    </ArchitectureItem>
+                  ))}
+                </ArchitectureGrid>
+              </div>
+
+              <div>
+                <SectionTitle level={4}>
+                  <BulbOutlined /> Technologies Used
+                </SectionTitle>
+                <Space wrap>
+                  {project.technologies.map((tech) => (
+                    <TechTag key={tech}>{tech}</TechTag>
+                  ))}
+                </Space>
+              </div>
+
+              {project.technicalDetails.challenges && (
+                <ChallengeSection>
+                  <h4>Key Challenges & Solutions</h4>
+                  <p>{project.technicalDetails.challenges}</p>
+                </ChallengeSection>
+              )}
+
+              {project.technicalDetails.setup && (
+                <div>
+                  <SectionTitle level={4}>Setup Instructions</SectionTitle>
+                  <SetupList
+                    dataSource={project.technicalDetails.setup}
+                    renderItem={(item) => (
+                      <List.Item>{item}</List.Item>
+                    )}
+                  />
+                </div>
+              )}
+
+              {project.id === 4 && (
+                <div>
+                  <SectionTitle level={4}>Demo</SectionTitle>
+                  <AudioButton onClick={() => {
+                    const audio = document.getElementById('sesameAudio') as HTMLAudioElement;
+                    if (audio) {
+                      audio.play();
+                    }
+                  }}>
+                    <SoundOutlined /> Play Example Audio
+                  </AudioButton>
+                  <AudioPlayer id="sesameAudio" src="/audio/SesameExample.wav" />
+                </div>
+              )}
+
+              <LinkButton href={project.github} target="_blank">
+                <GithubOutlined /> View on GitHub
+              </LinkButton>
+            </Space>
+          </Collapse.Panel>
+        ))}
+      </StyledCollapse>
     </ProjectsContainer>
   );
 };
