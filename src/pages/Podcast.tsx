@@ -74,11 +74,11 @@ const Podcast = () => {
       title: "A Professional Analysis Of My Readiness To Enter The Market",
       date: "March 16, 2024",
       description: <p>
-        • This podcast episode, powered by AI analysis of my resume and portfolio, directly addresses common hiring manager concerns for new graduate software developers in today's market, specifically in backend roles.<br/>
+        • This podcast episode, powered by AI analysis of my resume and portfolio, directly addresses common hiring manager concerns for new graduate software developers in today's market, and how I have addressed them.<br/>
         • By analyzing the "Common Pitfalls of The Modern New-Grad," this podcast demonstrates my proactive approach to understanding the challenges I might face and how to effectively position myself for success in the current job landscape.<br/>
         • Creating this podcast showcases my initiative in leveraging cutting-edge AI tools (NotebookLM) to gain insights into the job market and present information in an accessible format, reflecting my commitment to continuous learning and effective communication of technical concepts.<br/>
       </p>,
-      link: "https://notebooklm.google.com/notebook/7d38494a-9ca9-418d-a1bb-aadbb92f0a4f/audio"
+      link: "https://notebooklm.google.com/notebook/3c359d64-c028-4c73-ba6a-619997b03ade/audio"
     },
     {
       id: 1,

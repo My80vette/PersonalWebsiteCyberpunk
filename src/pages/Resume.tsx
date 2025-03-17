@@ -155,7 +155,7 @@ const Resume = () => {
               Backend Software Development Intern - CashOn
             </Title>
             <Paragraph style={{ color: 'var(--text-secondary)' }}>
-              December 2024 - Janurary 2025
+              September 2024 - Janurary 2025
             </Paragraph>
             <Paragraph style={{ color: 'var(--text-primary)' }}>
              • Architected a sophisticated TypeScript/JavaScript and PostgreSQL data management system with variable refresh rates that purged over 12,000 stale property valuations while maintaining precise timestamp integrity.<br/>
